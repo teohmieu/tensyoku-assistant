@@ -10,43 +10,39 @@
   --bg: #0f0f13; --bg2: #17171e; --bg3: #1e1e28; --bg4: #252532;
   --accent: #7c6ff7; --accent2: #a89af7; --accent3: #c4bcff;
   --text: #e8e6ff; --text2: #9b98be; --text3: #6b6890;
-  --border: #2e2e3e; --success: #4ade80; --warning: #fb923c;
+  --border: #2e2e3e; --success: #4ade80;
   --font: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
 }
 body { background: var(--bg); color: var(--text); font-family: var(--font); min-height: 100vh; overflow: hidden; }
 .app { display: grid; grid-template-columns: 280px 1fr 340px; grid-template-rows: auto 1fr; height: 100vh; }
 
-.header { grid-column: 1/-1; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; flex-direction: column; gap: 8px; }
-.header-top { display: flex; align-items: center; gap: 12px; }
+/* HEADER */
+.header { grid-column: 1/-1; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; align-items: center; gap: 16px; }
 .logo { font-size: 15px; font-weight: 700; color: var(--accent3); }
 .logo span { color: var(--text2); font-weight: 400; }
-.tts-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text3); padding: 3px 8px; border: 1px solid var(--border); border-radius: 20px; }
+.tts-badge { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text3); padding: 3px 10px; border: 1px solid var(--border); border-radius: 20px; }
 .tts-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--text3); }
 .tts-dot.active { background: var(--success); animation: pulse 1s infinite; }
 @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
-.header-keys { display: flex; gap: 8px; flex-wrap: wrap; }
-.key-group { display: flex; align-items: center; gap: 6px; background: var(--bg3); border: 1px solid var(--border); border-radius: 8px; padding: 4px 10px; }
-.key-group label { font-size: 11px; color: var(--text3); white-space: nowrap; }
-.key-group input { background: transparent; border: none; color: var(--text); font-size: 12px; font-family: monospace; width: 200px; outline: none; }
-.key-group input::placeholder { color: var(--text3); }
-.btn-save { padding: 3px 10px; border-radius: 5px; border: none; background: rgba(124,111,247,0.25); color: var(--accent2); cursor: pointer; font-size: 11px; }
-.btn-save:hover { background: rgba(124,111,247,0.4); }
-.saved-tag { font-size: 11px; color: var(--success); display: none; }
+.header-status { margin-left: auto; display: flex; align-items: center; gap: 8px; font-size: 12px; }
+.status-dot { width: 8px; height: 8px; border-radius: 50%; }
+.status-ok { background: var(--success); }
+.status-err { background: #f87171; }
 
+/* SIDEBAR */
 .sidebar { background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; padding: 16px; display: flex; flex-direction: column; gap: 16px; }
-.sidebar-section-title { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
+.sidebar-title { font-size: 11px; font-weight: 600; color: var(--text3); letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px; }
 .add-panel { background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
 .add-tabs { display: flex; gap: 4px; }
-.add-tab { flex: 1; padding: 4px; border-radius: 5px; border: 1px solid var(--border); background: transparent; color: var(--text2); font-size: 11px; cursor: pointer; transition: all 0.2s; }
+.add-tab { flex: 1; padding: 5px; border-radius: 5px; border: 1px solid var(--border); background: transparent; color: var(--text2); font-size: 11px; cursor: pointer; }
 .add-tab.active { background: rgba(124,111,247,0.2); border-color: var(--accent); color: var(--accent2); }
 .add-input { width: 100%; background: var(--bg4); border: 1px solid var(--border); border-radius: 6px; padding: 7px 10px; color: var(--text); font-size: 12px; font-family: var(--font); resize: none; outline: none; }
 .add-input:focus { border-color: var(--accent); }
 .add-input::placeholder { color: var(--text3); }
 .btn-add { width: 100%; padding: 7px; border-radius: 6px; border: none; background: var(--accent); color: #fff; font-size: 12px; cursor: pointer; }
-.btn-add:hover { background: var(--accent2); }
-.btn-add:disabled { opacity: 0.4; cursor: not-allowed; }
+.btn-add:disabled { opacity: 0.5; cursor: not-allowed; }
 .article-list { display: flex; flex-direction: column; gap: 5px; }
-.article-item { padding: 9px 11px; border-radius: 7px; cursor: pointer; border: 1px solid transparent; transition: all 0.2s; }
+.article-item { padding: 9px 11px; border-radius: 7px; cursor: pointer; border: 1px solid transparent; }
 .article-item:hover { background: var(--bg3); }
 .article-item.active { background: var(--bg3); border-color: var(--accent); }
 .article-item-title { font-size: 12px; font-weight: 500; color: var(--text); line-height: 1.4; }
@@ -55,18 +51,19 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); min-
 .badge-interview { background: rgba(124,111,247,0.2); color: var(--accent2); }
 .badge-news { background: rgba(74,222,128,0.15); color: #86efac; }
 .badge-analysis { background: rgba(251,146,60,0.15); color: #fdba74; }
-.badge-custom { background: rgba(196,188,255,0.15); color: var(--accent3); }
 
+/* MAIN */
 .main { overflow-y: auto; padding: 20px 24px; display: flex; flex-direction: column; gap: 16px; }
+.article-tag-label { font-size: 12px; color: var(--text3); margin-bottom: 4px; }
 .article-title-main { font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.4; }
 .article-subtitle-main { font-size: 13px; color: var(--text2); margin-top: 4px; }
-.meta-chips { display: flex; gap: 8px; font-size: 11px; color: var(--text3); flex-wrap: wrap; margin-top: 6px; }
+.meta-chips { display: flex; gap: 8px; font-size: 11px; color: var(--text3); margin-top: 6px; }
 
 .player { background: var(--bg3); border: 1px solid var(--border); border-radius: 12px; padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
 .player-row { display: flex; align-items: center; gap: 10px; }
-.btn-play { width: 42px; height: 42px; border-radius: 50%; background: var(--accent); border: none; color: #fff; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-.btn-play:hover { background: var(--accent2); transform: scale(1.05); }
-.btn-icon { width: 30px; height: 30px; border-radius: 6px; background: transparent; border: 1px solid var(--border); color: var(--text2); cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.btn-play { width: 42px; height: 42px; border-radius: 50%; background: var(--accent); border: none; color: #fff; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.btn-play:hover { background: var(--accent2); }
+.btn-icon { width: 30px; height: 30px; border-radius: 6px; background: transparent; border: 1px solid var(--border); color: var(--text2); cursor: pointer; font-size: 13px; display: flex; align-items: center; justify-content: center; }
 .btn-icon:hover { background: var(--bg4); color: var(--text); }
 .progress-wrap { flex: 1; display: flex; flex-direction: column; gap: 3px; }
 .progress-bar { width: 100%; height: 4px; background: var(--bg4); border-radius: 2px; cursor: pointer; -webkit-appearance: none; }
@@ -76,7 +73,7 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); min-
 .speed-btns { display: flex; gap: 3px; }
 .speed-btn { padding: 3px 7px; border-radius: 4px; border: 1px solid var(--border); background: transparent; color: var(--text2); font-size: 11px; cursor: pointer; }
 .speed-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
-.voice-row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+.voice-row { display: flex; align-items: center; gap: 8px; }
 .voice-row label { font-size: 11px; color: var(--text3); }
 .voice-select { background: var(--bg4); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-size: 11px; padding: 3px 6px; cursor: pointer; }
 .section-nav { display: flex; gap: 5px; flex-wrap: wrap; }
@@ -93,25 +90,26 @@ body { background: var(--bg); color: var(--text); font-family: var(--font); min-
 .vocab-def { font-size: 12px; color: var(--text2); }
 
 .article-body { font-size: 15px; line-height: 2; color: var(--text2); }
-.sentence { cursor: pointer; border-radius: 3px; padding: 0 2px; transition: background 0.2s, color 0.2s; display: inline; }
+.sentence { cursor: pointer; border-radius: 3px; padding: 0 2px; transition: background 0.15s; display: inline; }
 .sentence:hover { background: rgba(124,111,247,0.15); color: var(--text); }
 .sentence.reading { background: rgba(168,154,247,0.4); color: var(--text); }
 .sentence.read { background: rgba(124,111,247,0.08); color: var(--text); }
 .section-header { font-size: 16px; font-weight: 700; color: var(--text); margin: 24px 0 10px; padding-left: 10px; border-left: 3px solid var(--accent); }
 p { margin-bottom: 14px; }
 
+/* CHAT */
 .chat-panel { background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; }
 .chat-header { padding: 12px 14px; border-bottom: 1px solid var(--border); display: flex; flex-direction: column; gap: 8px; }
 .chat-mode-tabs { display: flex; gap: 3px; }
 .chat-mode-btn { flex: 1; padding: 5px 4px; border-radius: 6px; border: 1px solid var(--border); background: transparent; color: var(--text2); font-size: 11px; cursor: pointer; line-height: 1.3; }
 .chat-mode-btn.active { background: rgba(124,111,247,0.2); border-color: var(--accent); color: var(--accent2); }
-.rp-config { background: var(--bg3); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 8px; }
-.rp-config-row { display: flex; align-items: center; gap: 8px; }
-.rp-config-row label { font-size: 11px; color: var(--text3); min-width: 60px; }
+.rp-config { background: var(--bg3); border-radius: 8px; padding: 10px 12px; display: flex; flex-direction: column; gap: 7px; }
+.rp-row { display: flex; align-items: center; gap: 8px; }
+.rp-row label { font-size: 11px; color: var(--text3); min-width: 55px; }
 .rp-select { flex: 1; background: var(--bg4); border: 1px solid var(--border); border-radius: 5px; color: var(--text); font-size: 11px; padding: 4px 6px; }
-.rp-voices-row { display: flex; gap: 6px; }
-.rp-voice-card { flex: 1; background: var(--bg4); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 11px; }
-.rp-voice-card-label { color: var(--text3); margin-bottom: 3px; }
+.rp-voices { display: flex; gap: 6px; }
+.rp-voice-card { flex: 1; background: var(--bg4); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; }
+.rp-voice-label { font-size: 10px; color: var(--text3); margin-bottom: 3px; }
 .rp-voice-card select { width: 100%; background: transparent; border: none; color: var(--text); font-size: 11px; outline: none; cursor: pointer; }
 .chat-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; }
 .msg { display: flex; flex-direction: column; gap: 3px; }
@@ -122,21 +120,20 @@ p { margin-bottom: 14px; }
 .msg-bubble { padding: 9px 13px; border-radius: 11px; font-size: 13px; line-height: 1.6; max-width: 92%; }
 .msg.user .msg-bubble { background: var(--accent); color: #fff; border-bottom-right-radius: 3px; }
 .msg.ai .msg-bubble { background: var(--bg3); color: var(--text); border: 1px solid var(--border); border-bottom-left-radius: 3px; }
-.msg.narrator .msg-bubble { background: rgba(124,111,247,0.08); color: var(--text2); border: 1px dashed var(--border); font-size: 12px; font-style: italic; border-radius: 8px; max-width: 100%; text-align: center; }
+.msg.narrator .msg-bubble { background: rgba(124,111,247,0.08); color: var(--text2); border: 1px dashed var(--border); font-size: 11px; border-radius: 8px; max-width: 100%; text-align: center; }
 .msg-bubble.role-a { border-left: 3px solid var(--accent); }
 .msg-bubble.role-b { border-left: 3px solid #4ade80; }
 .loading-dots::after { content: '·'; animation: dots 1.2s infinite; }
 @keyframes dots { 0%{content:'·'} 33%{content:'··'} 66%{content:'···'} }
 .chat-bottom { padding: 10px 12px; border-top: 1px solid var(--border); display: flex; flex-direction: column; gap: 6px; }
 .role-hint { padding: 6px 10px; background: rgba(124,111,247,0.1); border-radius: 6px; font-size: 11px; color: var(--accent2); border: 1px solid rgba(124,111,247,0.2); }
+.btn-drama-read { width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--accent); background: rgba(124,111,247,0.1); color: var(--accent2); font-size: 12px; cursor: pointer; }
+.btn-drama-read:hover { background: rgba(124,111,247,0.25); }
 .chat-input-row { display: flex; gap: 7px; align-items: flex-end; }
 .chat-input { flex: 1; background: var(--bg3); border: 1px solid var(--border); border-radius: 9px; padding: 9px 11px; color: var(--text); font-size: 13px; resize: none; font-family: var(--font); line-height: 1.5; min-height: 38px; max-height: 100px; outline: none; }
 .chat-input:focus { border-color: var(--accent); }
 .btn-send { width: 34px; height: 34px; border-radius: 8px; background: var(--accent); border: none; color: #fff; cursor: pointer; font-size: 15px; flex-shrink: 0; }
-.btn-send:hover { background: var(--accent2); }
 .btn-send:disabled { opacity: 0.4; cursor: not-allowed; }
-.btn-drama-read { width: 100%; padding: 6px; border-radius: 6px; border: 1px solid var(--accent); background: rgba(124,111,247,0.1); color: var(--accent2); font-size: 12px; cursor: pointer; }
-.btn-drama-read:hover { background: rgba(124,111,247,0.25); }
 </style>
 </head>
 <body>
@@ -144,28 +141,18 @@ p { margin-bottom: 14px; }
 
 <!-- HEADER -->
 <div class="header">
-  <div class="header-top">
-    <div class="logo">転職<span>学習助手</span> <span style="font-size:10px;color:var(--text3)">v2</span></div>
-    <div class="tts-badge"><div class="tts-dot" id="tts-dot"></div><span id="tts-label">TTS</span></div>
-  </div>
-  <div class="header-keys">
-    <div class="key-group">
-      <label>Anthropic</label>
-      <input type="password" id="key-anthropic" placeholder="sk-ant-..." />
-      <button class="btn-save" onclick="saveKeys()">保存</button>
-      <span class="saved-tag" id="saved-tag">✓ 保存済み</span>
-    </div>
-    <div class="key-group">
-      <label>Google TTS</label>
-      <input type="password" id="key-google" placeholder="AIza..." />
-    </div>
+  <div class="logo">転職<span>学習助手</span> <span style="font-size:10px;color:var(--text3)">v3</span></div>
+  <div class="tts-badge"><div class="tts-dot" id="tts-dot"></div><span id="tts-label">TTS 待機中</span></div>
+  <div class="header-status">
+    <div class="status-dot" id="api-dot" style="background:#6b6890"></div>
+    <span id="api-status" style="font-size:11px;color:var(--text3)">API 確認中...</span>
   </div>
 </div>
 
 <!-- SIDEBAR -->
 <div class="sidebar">
   <div>
-    <div class="sidebar-section-title">記事を追加</div>
+    <div class="sidebar-title">記事を追加</div>
     <div class="add-panel">
       <div class="add-tabs">
         <button class="add-tab active" onclick="setAddTab('url')" id="atab-url">🔗 URL</button>
@@ -173,17 +160,17 @@ p { margin-bottom: 14px; }
       </div>
       <div id="add-url-area">
         <input class="add-input" id="article-url" type="url" placeholder="https://..." />
-        <div style="font-size:10px;color:var(--text3);margin-top:2px">AIが記事内容を自動抽出します</div>
+        <div style="font-size:10px;color:var(--text3);margin-top:3px">AIが記事内容を自動抽出します</div>
       </div>
       <div id="add-text-area" style="display:none">
         <input class="add-input" id="article-title-input" placeholder="タイトル（省略可）" style="margin-bottom:5px" />
         <textarea class="add-input" id="article-text-input" placeholder="記事本文をここに貼り付け..." rows="5"></textarea>
       </div>
-      <button class="btn-add" id="btn-add-article" onclick="addArticle()">＋ 追加して読み込む</button>
+      <button class="btn-add" id="btn-add" onclick="addArticle()">＋ 追加して読み込む</button>
     </div>
   </div>
   <div>
-    <div class="sidebar-section-title">記事リスト</div>
+    <div class="sidebar-title">記事リスト</div>
     <div class="article-list" id="article-list"></div>
   </div>
 </div>
@@ -191,7 +178,7 @@ p { margin-bottom: 14px; }
 <!-- MAIN -->
 <div class="main">
   <div>
-    <div style="font-size:12px;color:var(--text3);margin-bottom:4px" id="article-tag-label">📰 記事</div>
+    <div class="article-tag-label" id="article-tag-label">📰 記事</div>
     <div class="article-title-main" id="article-title">記事を選ぶか追加してください</div>
     <div class="article-subtitle-main" id="article-subtitle"></div>
     <div class="meta-chips" id="article-meta"></div>
@@ -218,7 +205,7 @@ p { margin-bottom: 14px; }
         <option value="ja-JP-Wavenet-D">男性 A (Wavenet-D)</option>
         <option value="ja-JP-Wavenet-A">女性 B (Wavenet-A)</option>
         <option value="ja-JP-Wavenet-B">男性 B (Wavenet-B)</option>
-        <option value="web">ブラウザ内蔵</option>
+        <option value="web">ブラウザ内蔵（フォールバック）</option>
       </select>
     </div>
     <div class="section-nav" id="section-nav"></div>
@@ -241,8 +228,9 @@ p { margin-bottom: 14px; }
       <button class="chat-mode-btn" onclick="setChatMode('drama')" id="cm-drama">🎭 朗読RP</button>
       <button class="chat-mode-btn" onclick="setChatMode('explain')" id="cm-explain">📚 解説</button>
     </div>
+    <!-- Interview config -->
     <div class="rp-config" id="rp-interview-config" style="display:none">
-      <div class="rp-config-row">
+      <div class="rp-row">
         <label>面接官の声</label>
         <select class="rp-select" id="rp-interviewer-voice">
           <option value="ja-JP-Wavenet-D">男性 A</option>
@@ -251,7 +239,7 @@ p { margin-bottom: 14px; }
           <option value="ja-JP-Wavenet-A">女性 B</option>
         </select>
       </div>
-      <div class="rp-config-row">
+      <div class="rp-row">
         <label>会社タイプ</label>
         <select class="rp-select" id="rp-company-type">
           <option value="SaaS/テック">SaaS / テック</option>
@@ -262,11 +250,12 @@ p { margin-bottom: 14px; }
         </select>
       </div>
     </div>
+    <!-- Drama config -->
     <div class="rp-config" id="rp-drama-config" style="display:none">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:4px">各役の声を設定してください</div>
-      <div class="rp-voices-row">
+      <div style="font-size:11px;color:var(--text3);margin-bottom:4px">各役の声を設定</div>
+      <div class="rp-voices">
         <div class="rp-voice-card">
-          <div class="rp-voice-card-label">役A（質問者）</div>
+          <div class="rp-voice-label">役A（質問者）</div>
           <select id="drama-voice-a">
             <option value="ja-JP-Wavenet-C">女性 A</option>
             <option value="ja-JP-Wavenet-A">女性 B</option>
@@ -275,7 +264,7 @@ p { margin-bottom: 14px; }
           </select>
         </div>
         <div class="rp-voice-card">
-          <div class="rp-voice-card-label">役B（回答者）</div>
+          <div class="rp-voice-label">役B（回答者）</div>
           <select id="drama-voice-b">
             <option value="ja-JP-Wavenet-D">男性 A</option>
             <option value="ja-JP-Wavenet-B">男性 B</option>
@@ -286,12 +275,14 @@ p { margin-bottom: 14px; }
       </div>
     </div>
   </div>
+
   <div class="chat-messages" id="chat-messages">
     <div class="msg ai">
       <div class="msg-role">AI アシスタント</div>
-      <div class="msg-bubble">こんにちは！まずAPIキーを保存して、記事を選んでください。<br><br>🔗 URLを貼るとAIが自動で記事を抽出<br>📝 テキストを直接貼り付けも可能<br>🎭 朗読RPでは役A・役Bを異なる声で読み上げ<br>🎯 面接RPでは面接官が音声で質問します</div>
+      <div class="msg-bubble">こんにちは！右上のAPI状態が緑になったら使用できます。<br><br>🔗 URLを貼るとAIが自動で記事を構造化<br>📝 テキストを直接貼り付けも可能<br>🎭 朗読RPで役A・役Bを異なる声で読み上げ<br>🎯 面接RPで面接官が音声で質問</div>
     </div>
   </div>
+
   <div class="chat-bottom">
     <div class="role-hint" id="role-hint" style="display:none"></div>
     <button class="btn-drama-read" id="btn-drama-read" onclick="startDramaRead()" style="display:none">🎭 ロールプレイで朗読開始</button>
@@ -301,16 +292,15 @@ p { margin-bottom: 14px; }
     </div>
   </div>
 </div>
-</div>
+</div><!-- .app -->
 
 <script>
-// STATE
+// ── STATE ──
 let currentArticle=null, sentences=[], currentSentence=-1, isPlaying=false, playSpeed=1;
 let chatMode='qa', chatHistory=[], selectedVoice='ja-JP-Wavenet-C', addTabMode='url';
-let anthropicKey=localStorage.getItem('anthropic_key')||'';
-let googleKey=localStorage.getItem('google_tts_key')||'';
 let customArticles=[];
 
+// ── SAMPLE DATA ──
 const SAMPLES=[
   {id:1,tag:'インタビュー',badgeClass:'badge-interview',
    title:'テクノロジー企業のDX戦略：CTOが語るAI活用の現実',
@@ -331,7 +321,7 @@ const SAMPLES=[
      {type:'p',role:'B',sentences:['技術そのものではなく、組織の文化変革だと実感しています。','カスタマーサポートのAIアシスト機能から始め、対応時間を平均40%削減することに成功しました。']},
      {type:'section',text:'採用について'},
      {type:'p',role:'A',sentences:['どのような人材を求めていますか？']},
-     {type:'p',role:'B',sentences:['技術力だけでなく、ビジネス視点を持ったエンジニアです。','会社選びは技術スタックよりも、その会社が取り組む課題と自分の志向が合致しているかで判断してほしいと思います。']},
+     {type:'p',role:'B',sentences:['技術力だけでなく、ビジネス視点を持ったエンジニアです。','会社選びは技術スタックよりも、取り組む課題と自分の志向が合致しているかで判断してほしいと思います。']},
    ]},
   {id:2,tag:'ニュース',badgeClass:'badge-news',
    title:'ソフトバンクとOpenAIが日本でAI共同事業を発表',
@@ -352,21 +342,29 @@ const SAMPLES=[
 
 function allArticles(){ return [...SAMPLES,...customArticles]; }
 
+// ── INIT ──
 function init(){
-  if(anthropicKey) document.getElementById('key-anthropic').value=anthropicKey;
-  if(googleKey) document.getElementById('key-google').value=googleKey;
   renderArticleList();
+  checkApiStatus();
 }
 
-function saveKeys(){
-  anthropicKey=document.getElementById('key-anthropic').value.trim();
-  googleKey=document.getElementById('key-google').value.trim();
-  localStorage.setItem('anthropic_key',anthropicKey);
-  localStorage.setItem('google_tts_key',googleKey);
-  const t=document.getElementById('saved-tag'); t.style.display='inline';
-  setTimeout(()=>t.style.display='none',2000);
+async function checkApiStatus(){
+  try{
+    const res=await fetch('/api/claude',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:10,messages:[{role:'user',content:'hi'}]})
+    });
+    const ok=res.status!==500&&res.status!==401;
+    document.getElementById('api-dot').className='status-dot '+(ok?'status-ok':'status-err');
+    document.getElementById('api-status').textContent=ok?'API 接続済み ✓':'API Key 未設定';
+  }catch(e){
+    document.getElementById('api-dot').style.background='#f87171';
+    document.getElementById('api-status').textContent='API 接続エラー';
+  }
 }
 
+// ── ADD ARTICLE ──
 function setAddTab(t){
   addTabMode=t;
   document.querySelectorAll('.add-tab').forEach(b=>b.classList.remove('active'));
@@ -376,33 +374,33 @@ function setAddTab(t){
 }
 
 async function addArticle(){
-  if(!anthropicKey){alert('先にAnthropicのAPI Keyを保存してください。');return;}
-  const btn=document.getElementById('btn-add-article');
+  const btn=document.getElementById('btn-add');
   btn.disabled=true; btn.textContent='処理中...';
   try{
     let userContent='';
     if(addTabMode==='url'){
       const url=document.getElementById('article-url').value.trim();
-      if(!url){alert('URLを入力してください。');btn.disabled=false;btn.textContent='＋ 追加して読み込む';return;}
-      userContent=`以下のURLの記事を分析・構造化してください。URLに直接アクセスできない場合はURLから推測できる情報をもとにサンプル記事を生成してください。\nURL: ${url}`;
+      if(!url){alert('URLを入力してください。');return;}
+      userContent=`以下のURLの記事を分析・構造化してください。URLに直接アクセスできない場合はURLから推測できる情報でサンプル記事を生成してください。\nURL: ${url}`;
     } else {
       const text=document.getElementById('article-text-input').value.trim();
       const title=document.getElementById('article-title-input').value.trim();
-      if(!text){alert('テキストを入力してください。');btn.disabled=false;btn.textContent='＋ 追加して読み込む';return;}
+      if(!text){alert('テキストを入力してください。');return;}
       userContent=`以下のテキストを記事として構造化してください。\nタイトルヒント：${title||'（なし）'}\n\n${text}`;
     }
+
     const sys=`あなたは記事構造化AIです。与えられた情報を解析し、以下のJSON形式のみを返してください（コードブロック・前置き不要）：
 {"title":"記事タイトル","subtitle":"概要1文","tag":"ニュース|インタビュー|業界分析|コラム","source":"メディア名","vocab":[{"jp":"用語","reading":"よみ","def":"説明"}],"sections":["セクション1"],"content":[{"type":"section","text":"見出し"},{"type":"p","role":"B","sentences":["文1。","文2。"]}]}
-インタビュー形式の場合はroleをA（質問者）/B（回答者）で振り分けてください。vocabは3〜5個。`;
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+インタビュー形式はroleをA（質問者）/B（回答者）で。vocabは3〜5個。`;
+
+    const res=await fetch('/api/claude',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':anthropicKey,'anthropic-version':'2023-06-01'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:4000,system:sys,messages:[{role:'user',content:userContent}]})
     });
     const data=await res.json();
     const raw=data.content?.[0]?.text||'';
-    const jsonStr=raw.replace(/```json|```/g,'').trim();
-    const article=JSON.parse(jsonStr);
+    const article=JSON.parse(raw.replace(/```json|```/g,'').trim());
     article.id=Date.now();
     article.badgeClass=article.tag==='インタビュー'?'badge-interview':article.tag==='ニュース'?'badge-news':'badge-analysis';
     article.meta={source:article.source||'追加記事',date:new Date().toLocaleDateString('ja-JP',{year:'numeric',month:'long'})};
@@ -417,6 +415,7 @@ async function addArticle(){
   }
 }
 
+// ── RENDER ──
 function renderArticleList(){
   document.getElementById('article-list').innerHTML=allArticles().map(a=>`
     <div class="article-item" onclick="loadArticle(${a.id})" id="art-${a.id}">
@@ -443,36 +442,34 @@ function loadArticle(id){
     document.getElementById('vocab-items').innerHTML=currentArticle.vocab.map(v=>
       `<div class="vocab-item"><span class="vocab-jp">${v.jp}</span><span class="vocab-reading">【${v.reading}】</span><span class="vocab-def">${v.def}</span></div>`
     ).join('');
-  } else { document.getElementById('vocab-panel').style.display='none'; }
+  } else document.getElementById('vocab-panel').style.display='none';
+
   let si=0;
   document.getElementById('article-body').innerHTML=(currentArticle.content||[]).map(block=>{
-    if(block.type==='section') return `<div class="section-header">${block.text}</div>`;
+    if(block.type==='section')return`<div class="section-header">${block.text}</div>`;
     const role=block.role||'B';
-    const spans=block.sentences.map(s=>{
-      sentences.push({idx:si,text:s,role});
-      return `<span class="sentence" id="s${si}" data-role="${role}" onclick="jumpToSentence(${si++})">${s}</span>`;
-    }).join('');
-    return `<p>${spans}</p>`;
+    const spans=block.sentences.map(s=>{sentences.push({idx:si,text:s,role});return`<span class="sentence" id="s${si}" data-role="${role}" onclick="jumpToSentence(${si++})">${s}</span>`;}).join('');
+    return`<p>${spans}</p>`;
   }).join('');
   document.getElementById('progress').max=Math.max(sentences.length-1,1);
   document.getElementById('time-total').textContent=`全${sentences.length}文`;
-  document.getElementById('section-nav').innerHTML=(currentArticle.sections||[]).map((s,i)=>
-    `<span class="section-chip" onclick="jumpToSection(${i})">${s}</span>`).join('');
+  document.getElementById('section-nav').innerHTML=(currentArticle.sections||[]).map((s,i)=>`<span class="section-chip" onclick="jumpToSection(${i})">${s}</span>`).join('');
   updateProgress();
-  addChatMsg('ai',`「${currentArticle.title}」を読み込みました。\n▶ 普通再生 / 🎭 朗読RPで役ごとに声が変わります。`);
+  addChatMsg('ai',`「${currentArticle.title}」を読み込みました。▶で再生、🎭 朗読RPで役ごとに声が変わります。`);
 }
 
-// TTS
+// ── TTS (calls /api/tts backend) ──
 async function googleTTS(text,voiceName){
-  if(!googleKey||voiceName==='web')return null;
+  if(voiceName==='web')return null;
   try{
-    const res=await fetch(`https://texttospeech.googleapis.com/v1/text:synthesize?key=${googleKey}`,{
+    const res=await fetch('/api/tts',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({input:{text},voice:{languageCode:'ja-JP',name:voiceName},audioConfig:{audioEncoding:'MP3',speakingRate:playSpeed}})
     });
+    if(!res.ok)return null;
     const data=await res.json();
-    if(data.audioContent) return new Audio('data:audio/mp3;base64,'+data.audioContent);
+    if(data.audioContent)return new Audio('data:audio/mp3;base64,'+data.audioContent);
   }catch(e){}
   return null;
 }
@@ -500,13 +497,13 @@ async function speakText(text,voiceName,onEnd){
     audio.onended=()=>{document.getElementById('tts-dot').classList.remove('active');if(onEnd)onEnd();};
     audio.onerror=()=>{document.getElementById('tts-dot').classList.remove('active');if(onEnd)onEnd();};
     audio.play();
-  } else {
+  }else{
     document.getElementById('tts-label').textContent='内蔵TTS';
     webTTS(text,()=>{document.getElementById('tts-dot').classList.remove('active');if(onEnd)onEnd();});
   }
 }
 
-// Player
+// ── PLAYER ──
 function togglePlay(){
   if(!currentArticle){addChatMsg('ai','先に記事を選んでください。');return;}
   if(isPlaying){isPlaying=false;ttsStop();document.getElementById('play-btn').textContent='▶';}
@@ -552,7 +549,7 @@ function updateProgress(){
   document.getElementById('time-cur').textContent=`${cur+(currentSentence>=0?1:0)} / ${total} 文`;
 }
 
-// Drama RP
+// ── DRAMA RP ──
 async function startDramaRead(){
   if(!currentArticle){addChatMsg('ai','先に記事を選んでください。');return;}
   ttsStop(); isPlaying=false; document.getElementById('play-btn').textContent='▶';
@@ -579,7 +576,7 @@ async function startDramaRead(){
   playNext();
 }
 
-// Chat
+// ── CHAT ──
 function setChatMode(m){
   chatMode=m;
   document.querySelectorAll('.chat-mode-btn').forEach(b=>b.classList.remove('active'));
@@ -591,18 +588,18 @@ function setChatMode(m){
   if(m==='interview'){
     hint.style.display='block'; hint.textContent='🎯 面接官が音声で質問します。日本語で答えてください。';
     dramaBtn.style.display='none';
-    const firstQ='では面接を始めましょう。本日はお越しいただきありがとうございます。まず、今回の転職理由をお聞かせください。';
-    addChatMsg('ai',firstQ);
-    speakText(firstQ,document.getElementById('rp-interviewer-voice').value,()=>{});
-  } else if(m==='drama'){
+    const q='では面接を始めましょう。本日はお越しいただきありがとうございます。まず、今回の転職理由をお聞かせください。';
+    addChatMsg('ai',q);
+    speakText(q,document.getElementById('rp-interviewer-voice').value,()=>{});
+  }else if(m==='drama'){
     hint.style.display='block'; hint.textContent='🎭 下のボタンで朗読開始。チャットで質問もできます。';
     dramaBtn.style.display='block';
     addChatMsg('ai','朗読RPモードです。役Aと役Bを異なる声で読み上げます。');
-  } else if(m==='explain'){
+  }else if(m==='explain'){
     hint.style.display='block'; hint.textContent='📚 わからない言葉や概念を質問してください。';
     dramaBtn.style.display='none';
     addChatMsg('ai','どの部分を詳しく解説しましょうか？');
-  } else {
+  }else{
     hint.style.display='none'; dramaBtn.style.display='none';
     addChatMsg('ai','Q&Aモードです。記事について何でも質問してください。');
   }
@@ -613,16 +610,16 @@ function buildSystemPrompt(){
     ?`記事：「${currentArticle.title}」\n本文：${sentences.map(s=>s.text).join('　')}\nキーワード：${(currentArticle.vocab||[]).map(v=>`${v.jp}（${v.def}）`).join('、')}`
     :'記事未選択。';
   const co=document.getElementById('rp-company-type')?.value||'テック';
-  if(chatMode==='interview') return `あなたは${co}企業の面接官です。${ctx}\n面接形式で業界知識・志望動機を確認してください。1回の発言は2〜3文。日本語のみ。`;
-  if(chatMode==='drama') return `あなたは記事解説AIです。${ctx}\n朗読内容について質問に答えてください。日本語メイン、必要に応じて中国語補足。`;
-  if(chatMode==='explain') return `あなたは日本語・ビジネス用語の専門家です。${ctx}\n平易な日本語で説明し、必要に応じて中国語補足も加えてください。`;
-  return `あなたは転職活動サポートAIです。${ctx}\n記事を深掘りし、転職・業界理解に役立つ情報を提供してください。日本語メイン、必要に応じて中国語補足。`;
+  if(chatMode==='interview')return`あなたは${co}企業の面接官です。${ctx}\n面接形式で業界知識・志望動機を確認してください。1回の発言は2〜3文。日本語のみ。`;
+  if(chatMode==='drama')return`あなたは記事解説AIです。${ctx}\n朗読内容について質問に答えてください。日本語メイン、必要に応じて中国語補足。`;
+  if(chatMode==='explain')return`あなたは日本語・ビジネス用語の専門家です。${ctx}\n平易な日本語で説明し、必要に応じて中国語補足。`;
+  return`あなたは転職活動サポートAIです。${ctx}\n記事を深掘りし、転職・業界理解に役立つ情報を提供してください。日本語メイン、必要に応じて中国語補足。`;
 }
 
 function addChatMsg(role,text){
   const msgs=document.getElementById('chat-messages');
   const div=document.createElement('div'); div.className=`msg ${role}`;
-  const label=role==='ai'?'AI アシスタント':role==='narrator'?'':role==='user'?'あなた':'';
+  const label=role==='ai'?'AI アシスタント':role==='user'?'あなた':'';
   div.innerHTML=`${label?`<div class="msg-role">${label}</div>`:''}<div class="msg-bubble">${text.replace(/\n/g,'<br>')}</div>`;
   msgs.appendChild(div); msgs.scrollTop=msgs.scrollHeight;
 }
@@ -630,7 +627,6 @@ function addChatMsg(role,text){
 async function sendMessage(){
   const input=document.getElementById('chat-input'),text=input.value.trim();
   if(!text)return;
-  if(!anthropicKey){addChatMsg('ai','上のバーにAPI Keyを保存してください。');return;}
   input.value=''; autoResize(input);
   addChatMsg('user',text); chatHistory.push({role:'user',content:text});
   const msgs=document.getElementById('chat-messages');
@@ -639,9 +635,9 @@ async function sendMessage(){
   msgs.appendChild(ld); msgs.scrollTop=msgs.scrollHeight;
   document.getElementById('send-btn').disabled=true;
   try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
+    const res=await fetch('/api/claude',{
       method:'POST',
-      headers:{'Content-Type':'application/json','x-api-key':anthropicKey,'anthropic-version':'2023-06-01'},
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1000,system:buildSystemPrompt(),messages:chatHistory.slice(-12)})
     });
     const data=await res.json();
@@ -649,7 +645,7 @@ async function sendMessage(){
     ld.remove(); addChatMsg('ai',reply); chatHistory.push({role:'assistant',content:reply});
     if(chatMode==='interview') speakText(reply,document.getElementById('rp-interviewer-voice').value,()=>{});
   }catch(e){
-    ld.remove(); addChatMsg('ai','エラーが発生しました。API Keyを確認してください。');
+    ld.remove(); addChatMsg('ai','エラーが発生しました。しばらくしてから再試行してください。');
   }
   document.getElementById('send-btn').disabled=false;
 }
